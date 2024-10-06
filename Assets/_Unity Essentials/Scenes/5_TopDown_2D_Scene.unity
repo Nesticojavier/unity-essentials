@@ -808,7 +808,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1234,7 +1234,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1306,13 +1306,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1858740463}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.23, y: 0.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0.2588191, w: 0.9659258}
+  m_LocalPosition: {x: -5.99, y: -1.34, z: 0}
+  m_LocalScale: {x: 1.0206, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 30}
 --- !u!114 &1858740468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1322,12 +1322,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1858740463}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b98bdb791ad8445c090e72b2ed61ab58, type: 3}
+  m_Script: {fileID: 11500000, guid: 2016959ade03a4494bf53720d84e38f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 372615019}
-  maxAcceleration: 5
-  maxSpeed: 12
+  maxAngularAcceleration: 1
+  maxRotation: 3
+  targetRadius: 1
+  slowRadius: 3
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
