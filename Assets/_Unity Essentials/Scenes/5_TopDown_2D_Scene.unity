@@ -1211,7 +1211,7 @@ GameObject:
   - component: {fileID: 1858740467}
   - component: {fileID: 1858740466}
   - component: {fileID: 1858740465}
-  - component: {fileID: 1858740464}
+  - component: {fileID: 1858740468}
   m_Layer: 0
   m_Name: RacingCar_2D
   m_TagString: Untagged
@@ -1219,20 +1219,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1858740464
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1858740463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 225d23849423f4026a770d407eb648f7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 5
-  maxRotation: 1
 --- !u!50 &1858740465
 Rigidbody2D:
   serializedVersion: 4
@@ -1327,6 +1313,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1858740468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1858740463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b98bdb791ad8445c090e72b2ed61ab58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 372615019}
+  maxAcceleration: 5
+  maxSpeed: 12
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
