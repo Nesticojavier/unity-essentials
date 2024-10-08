@@ -8,9 +8,9 @@ public class DinamicSeek : MonoBehaviour
     public Transform target;
     public float maxAcceleration = 2f;
     public float maxSpeed = 10f;
-    private Vector2 velocity;      // Velocidad actual  
-    private float rotation;        // Velocidad angular actual
-    private Rigidbody2D rb2D;
+    protected Vector2 velocity;      // Velocidad actual  
+    protected float rotation;        // Velocidad angular actual
+    protected Rigidbody2D rb2D;
 
     // variable usada para sumarle la prediccion del algoritmo porsue
     protected Vector3 future = Vector3.zero;
@@ -49,7 +49,7 @@ public class DinamicSeek : MonoBehaviour
         rb2D.MoveRotation(orientation);
     }
 
-    SteeringOutput getSteering()
+    protected SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
         result.linear = (target.position + future) - transform.position;
