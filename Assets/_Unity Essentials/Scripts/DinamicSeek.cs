@@ -12,6 +12,9 @@ public class DinamicSeek : MonoBehaviour
     private float rotation;        // Velocidad angular actual
     private Rigidbody2D rb2D;
 
+    // variable usada para sumarle la prediccion del algoritmo porsue
+    protected Vector3 future = Vector3.zero;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -49,7 +52,7 @@ public class DinamicSeek : MonoBehaviour
     SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
-        result.linear = target.position - transform.position;
+        result.linear = (target.position + future) - transform.position;
         result.linear = result.linear.normalized;
         result.linear *= maxAcceleration;
         result.angular = 0f;
