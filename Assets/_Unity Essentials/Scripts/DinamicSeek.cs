@@ -6,8 +6,8 @@ public class DinamicSeek : MonoBehaviour
 {
 
     public Transform target;
-    public float maxAcceleration = 2f;
-    public float maxSpeed = 10f;
+    public float maxAcceleration = 30f;
+    public float maxSpeed = 20f;
     protected Vector2 velocity;      // Velocidad actual  
     protected float rotation;        // Velocidad angular actual
     protected Rigidbody2D rb2D;
@@ -29,14 +29,15 @@ public class DinamicSeek : MonoBehaviour
 
         // Actualizar la posición y orientación
         Vector2 position = rb2D.position;
-        float orientation = rb2D.rotation;
+        // float orientation = rb2D.rotation;
 
-        position += velocity * time;  
-        orientation += rotation * time;
+        // orientation += rotation * time;
 
         // Actualizar la velocidad y rotación en base a las fuerzas de steering
-        velocity += steering.linear * time;  
-        rotation += steering.angular * time; 
+        velocity = rb2D.velocity + steering.linear * time;
+        position += velocity * time;
+
+        // rotation += steering.angular * time; 
 
         // limitar velocidad
         if (velocity.magnitude > maxSpeed)
@@ -46,7 +47,7 @@ public class DinamicSeek : MonoBehaviour
 
         // Aplicamos los cambios al Rigidbody2D
         rb2D.MovePosition(position);
-        rb2D.MoveRotation(orientation);
+        rb2D.velocity = velocity;
     }
 
     protected SteeringOutput getSteering()
