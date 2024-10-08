@@ -12,15 +12,10 @@ public class MathUtilities
 
      Retorna el resultado en grados
   */
-    public static float mapToRange(float degAngle)
+    public static float mapToRange(float angle)
     {
-        // convertir a radianes
-        float radAngle = degAngle * Mathf.Deg2Rad;
-
-        // realizar calculos
-        float result = (radAngle + Mathf.PI) % (2 * Mathf.PI) - Mathf.PI;
-
-        // retornar el resultado en grados
-        return result * Mathf.Rad2Deg;
+        angle = (angle + 180) % 360;
+        if (angle < 0) angle += 360;
+        return angle - 180;
     }
 }
