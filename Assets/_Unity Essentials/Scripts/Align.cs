@@ -6,8 +6,8 @@ public class Align : MonoBehaviour
 {
 
     public Transform target;
-    public float maxAngularAcceleration = 5;
-    public float maxRotation = 5;
+    public float maxAngularAcceleration = 200;
+    public float maxRotation = 200;
 
     // The radius for arriving at the target.
     public float targetRadius = 2;

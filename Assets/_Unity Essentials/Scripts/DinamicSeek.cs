@@ -5,10 +5,11 @@ using UnityEngine;
 public class DinamicSeek : MonoBehaviour
 {
     public bool flee = false;
-
+    protected bool pathFollowing = false;
     public float fleeRadius = 10f;
     public float slowRadius = 7f;
     public Transform target;
+    protected Vector2 newTarget;
     public float maxAcceleration = 30f;
     public float maxSpeed = 20f;
     protected Vector2 velocity;      // Velocidad actual  
@@ -65,9 +66,18 @@ public class DinamicSeek : MonoBehaviour
     {
         SteeringOutput result = new SteeringOutput();
 
+        // usado para uir
         if (!flee)
         {
-            result.linear = (target.position + future) - transform.position;
+            // usado el nuevo target de path following
+            if (!pathFollowing)
+            {
+                result.linear = (target.position + future) - transform.position;
+            }
+            else
+            {
+                result.linear = newTarget - new Vector2(transform.position.x, transform.position.y);
+            }
         }
 
         // solo en caso de flee

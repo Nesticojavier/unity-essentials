@@ -6,8 +6,8 @@ public class VelocityMatch : MonoBehaviour
 {
 
     public Transform target;
-    public float maxAcceleration = 2f;
-    public float maxSpeed = 10f;
+    public float maxAcceleration = 20f;
+    public float maxSpeed = 20f;
     private float timeToTarget = 0.05f;
     private Vector2 velocity;      // Velocidad actual  
     private float rotation;        // Velocidad angular actual

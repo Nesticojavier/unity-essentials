@@ -23,7 +23,15 @@ public class PlayerController2D : MonoBehaviour
         Vector2 movement = new Vector2(moveX, moveY) * moveSpeed;
         rb.velocity = movement;
 
-        // Rotación con las teclas 'E' (sentido de las agujas del reloj) y 'Q' (sentido contrario)
+        // Solo rotar hacia la dirección de movimiento si hay movimiento
+        if (movement.sqrMagnitude > 0.01f)  // Verifica si el movimiento no es cercano a cero
+        {
+            // Calcular el ángulo hacia el cual rotar
+            float angle = Mathf.Atan2(movement.y, movement.x) * Mathf.Rad2Deg;
+            rb.rotation = angle;  // Ajustar la rotación del Rigidbody2D hacia el ángulo calculado
+        }
+
+        // Rotación adicional con las teclas 'E' y 'Q'
         if (Input.GetKey(KeyCode.E))
         {
             // Rotar en el sentido de las agujas del reloj

@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class KinematicWander2 : MonoBehaviour
 {
-    public float maxSpeed = 5f;         // Velocidad máxima
-    public float maxRotation = 45f;     // Máxima rotación por frame (en grados)
+    public float maxSpeed = 2f;         // Velocidad máxima
+    public float maxRotation = 5f;     // Máxima rotación por frame (en grados)
     private Rigidbody2D rb2D;           // El Rigidbody2D del personaje
     private float currentOrientation;   // Orientación actual del personaje (en grados)
 
