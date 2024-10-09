@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class DinamicSeek : MonoBehaviour
 {
+    public bool flee = false;
 
+    public float fleeRadius = 50f;
+    public float slowRadius = 40f;
     public Transform target;
     public float maxAcceleration = 30f;
     public float maxSpeed = 20f;
@@ -26,6 +29,14 @@ public class DinamicSeek : MonoBehaviour
     {
         SteeringOutput steering = getSteering();
         float time = Time.deltaTime;
+
+
+        if (steering.linear == Vector2.zero)
+        {
+            velocity = Vector2.zero;
+            rb2D.velocity = Vector2.zero;
+            return;
+        }
 
         // Actualizar la posición y orientación
         Vector2 position = rb2D.position;
@@ -53,7 +64,56 @@ public class DinamicSeek : MonoBehaviour
     protected SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
-        result.linear = (target.position + future) - transform.position;
+
+        if (!flee)
+        {
+            result.linear = (target.position + future) - transform.position;
+        }
+
+        // solo en caso de flee
+        else
+        {
+            result.linear = transform.position - (target.position + future);
+            Vector2 direction = transform.position - (target.position + future);
+
+            float distance = result.linear.magnitude;
+            float targetSpeed;
+            Vector2 targetVelocity;
+            if (distance > fleeRadius)
+            {
+                result.linear = Vector2.zero;
+                return result;
+            }
+
+            // Calculo de la velocidad objetivo
+            if (distance < slowRadius)
+            {
+                targetSpeed = maxSpeed;
+            }
+            else
+            {
+                targetSpeed = maxSpeed * distance / slowRadius;
+            }
+
+            // target velocity combina velocidad objetiv y direccion
+            targetVelocity = direction;
+            targetVelocity = targetVelocity.normalized;
+            targetVelocity *= targetSpeed;
+
+
+            // Aceleracion
+            result.linear = targetVelocity - velocity;
+            result.linear = result.linear / 0.1f;
+
+            // verificar si la aceleracion es muy rapida
+            if (result.linear.magnitude > maxAcceleration)
+            {
+                result.linear = result.linear.normalized;
+                result.linear *= maxAcceleration;
+            }
+            return result;
+        }
+
         result.linear = result.linear.normalized;
         result.linear *= maxAcceleration;
         result.angular = 0f;
