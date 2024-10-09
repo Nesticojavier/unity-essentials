@@ -2,15 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Face: Align
+public class Face : Align
 {
     public Transform Target
     {
         get { return target; }
         set { target = value; }
     }
-
-    void Start(){
+    protected bool notFace = false;
+    protected Vector2 newTarget;
+    void Start()
+    {
         notAlign = true;
         rb2D = GetComponent<Rigidbody2D>();
     }
@@ -34,13 +36,21 @@ public class Face: Align
     }
 
 
-public new SteeringOutput getSteering()
+    public new SteeringOutput getSteering()
     {
         SteeringOutput result = new SteeringOutput();
 
 
         // 1. Calcular la dirección hacia el objetivo
-        Vector2 direction = target.position - transform.position;
+        Vector3 direction;
+        if (!notFace)
+        {
+            direction = target.position - transform.position;
+        }
+        else
+        {
+            direction = newTarget - new Vector2(transform.position.x, transform.position.y);
+        }
 
         // 2. Comprobar si la dirección es cero, si es así no hay que cambiar la orientación
         if (direction.magnitude == 0)
