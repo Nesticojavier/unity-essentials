@@ -14,9 +14,10 @@ public class Pursue : DinamicSeek
         rb2D = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
+    new void Update()
     {
-        SteeringOutput steering = getSteering();
+        base.Update();
+/*         SteeringOutput steering = getSteering();
         float time = Time.deltaTime;
 
         // Actualizar la posición y orientación
@@ -42,7 +43,7 @@ public class Pursue : DinamicSeek
 
         // Aplicamos los cambios al Rigidbody2D
         rb2D.MovePosition(position);
-        rb2D.velocity = velocity;
+        rb2D.velocity = velocity; */
     }
 
 

@@ -6,8 +6,8 @@ public class DinamicSeek : MonoBehaviour
 {
     public bool flee = false;
 
-    public float fleeRadius = 50f;
-    public float slowRadius = 40f;
+    public float fleeRadius = 10f;
+    public float slowRadius = 7f;
     public Transform target;
     public float maxAcceleration = 30f;
     public float maxSpeed = 20f;
@@ -25,7 +25,7 @@ public class DinamicSeek : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    protected void Update()
     {
         SteeringOutput steering = getSteering();
         float time = Time.deltaTime;
