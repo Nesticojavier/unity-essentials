@@ -880,8 +880,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 5
-  maxRotation: 5
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 50
 --- !u!1 &1604090716

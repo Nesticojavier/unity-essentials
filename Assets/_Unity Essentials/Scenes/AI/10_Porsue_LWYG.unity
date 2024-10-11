@@ -528,11 +528,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flee: 1
-  fleeRadius: 10
-  slowRadius: 7
+  fleeRadius: 5
+  slowRadius: 3
   target: {fileID: 1858740467}
-  maxAcceleration: 40
-  maxSpeed: 40
+  maxAcceleration: 5
+  maxSpeed: 5
   maxPrediction: 5
 --- !u!114 &756972776
 MonoBehaviour:

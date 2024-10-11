@@ -36,7 +36,7 @@ public class PathFollowing : DinamicSeek
         {
             velocity = velocity.normalized * maxSpeed;
         }
-        
+
         rb2D.MovePosition(position);
         rb2D.velocity = velocity;
     }
@@ -50,9 +50,9 @@ public class PathFollowing : DinamicSeek
 
         float targetParam = currentParam + pathOffset;
 
-        if (targetParam > 17)
+        if (targetParam > 35)
         {
-            targetParam -= 18;
+            targetParam -= 36;
         }
 
         newTarget = path.getPosition(targetParam);

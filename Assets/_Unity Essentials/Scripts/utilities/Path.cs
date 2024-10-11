@@ -53,6 +53,10 @@ public class Path
     public Vector2 getPosition(float param)
     {
         int paramInt = (int)param;
+
+        Debug.Log("######################");
+        Debug.Log(paramInt);
+        Debug.Log("######################");
         Debug.Log("Este mi 7 final: " + points[paramInt] + " " + points[paramInt].position);
         // Verificamos que el índice sea válido
         if (paramInt >= 0 && paramInt < points.Count)

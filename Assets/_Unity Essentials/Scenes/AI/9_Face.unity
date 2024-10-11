@@ -178,8 +178,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &67552694
@@ -560,8 +560,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &244255990
@@ -1145,8 +1145,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &553604495
@@ -1519,8 +1519,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &666876726
@@ -1811,8 +1811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &761635063
@@ -2103,8 +2103,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &1008102351
@@ -2395,8 +2395,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &1129136260
@@ -2770,8 +2770,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &1228756215
@@ -3295,8 +3295,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!1 &1586473179
@@ -3354,8 +3354,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &1586473182
@@ -3730,8 +3730,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &1714039137
@@ -4022,8 +4022,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &1724401522
@@ -4501,8 +4501,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &1960400573
@@ -4793,8 +4793,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1858740467}
-  maxAngularAcceleration: 200
-  maxRotation: 200
+  maxAngularAcceleration: 50
+  maxRotation: 50
   targetRadius: 2
   slowRadius: 20
 --- !u!114 &2012194802

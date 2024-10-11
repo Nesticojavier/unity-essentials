@@ -6,8 +6,8 @@ public class LookWhereYoureGoing : Align
 {
     void Start()
     {
-        maxAngularAcceleration = 200;
-        maxRotation = 200;
+        maxAngularAcceleration = 100;
+        maxRotation = 100;
         notAlign = true;
         rb2D = GetComponent<Rigidbody2D>();
     }
