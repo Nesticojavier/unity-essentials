@@ -12,7 +12,6 @@ public class PlayerController2D : MonoBehaviour
         // Obtener el componente Rigidbody2D del personaje
         rb = GetComponent<Rigidbody2D>();
     }
-
     void Update()
     {
         // Movimiento con flechas del teclado
