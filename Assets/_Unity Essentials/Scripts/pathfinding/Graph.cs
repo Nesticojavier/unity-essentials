@@ -44,7 +44,7 @@ public class Graph : MonoBehaviour
 				float x2=(node2.vertices[j%node2.vertices.Length].x + node2.vertices[(j+1)%node2.vertices.Length].x)/2;
 				float y2=(node2.vertices[j%node2.vertices.Length].y + node2.vertices[(j+1)%node2.vertices.Length].y)/2;
 							
-				if(Mathf.Abs(x1-x2)<0.11f & Mathf.Abs(y1-y2)<0.11f){
+				if(Mathf.Abs(x1-x2)<0.501f & Mathf.Abs(y1-y2)<0.501f){
 					return true;
 				}
             }
