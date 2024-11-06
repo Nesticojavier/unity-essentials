@@ -56,7 +56,9 @@ public class PathFinding : MonoBehaviour
 
         // following path
         for (int i = 0; i < path.Count; i++)
-        {
+        {   
+
+            // estamos en el ultimo nodo
             if (graph.PointInTriangle(character.transform.position, path[path.Count - 1].vertices))
             {
 
@@ -93,7 +95,8 @@ public class PathFinding : MonoBehaviour
             {
                 Debug.DrawLine(path[i].center, path[i + 1].center, Color.green);
             }
-
+            
+            // estamos en un nodo del camino
             if (i < path.Count - 1 && graph.PointInTriangle(character.transform.position, path[i].vertices))
             {
 

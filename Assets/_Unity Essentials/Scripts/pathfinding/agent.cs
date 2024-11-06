@@ -25,7 +25,7 @@ public class agent : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        maxAcceleration = maxSpeed * 100;
+        maxAcceleration = maxSpeed * 50;
         // Update position and orientation
         transform.position += velocity * Time.deltaTime;
         transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + rotation * Time.deltaTime * Mathf.Rad2Deg);
