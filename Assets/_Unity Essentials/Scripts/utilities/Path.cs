@@ -45,7 +45,7 @@ public class Path
         }
 
         // Para ahora, retornamos el índice o param más cercano
-        // Debug.Log("Punto más cercano: " + closestIndex + " con distancia: " + closestDistance);
+
         return closestParam;
     }
 
@@ -53,11 +53,6 @@ public class Path
     public Vector2 getPosition(float param)
     {
         int paramInt = (int)param;
-
-        Debug.Log("######################");
-        Debug.Log(paramInt);
-        Debug.Log("######################");
-        Debug.Log("Este mi 7 final: " + points[paramInt] + " " + points[paramInt].position);
         // Verificamos que el índice sea válido
         if (paramInt >= 0 && paramInt < points.Count)
         {
@@ -65,7 +60,6 @@ public class Path
         }
         else
         {
-            // Debug.LogWarning("Invalid parameter index: " + param);
             return Vector2.zero; 
         }
     }

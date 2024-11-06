@@ -117,8 +117,7 @@ public class StateMachinePatrol1 : MonoBehaviour
 
             // Drenar energía mientras patrulla
             currentEnergy -= energyDrainRate * Time.deltaTime;
-            // Debug.Log(currentEnergy);
-            // State otherState = otherStateMachine.currentState;
+
 
 
 

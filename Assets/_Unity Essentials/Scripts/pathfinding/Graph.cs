@@ -74,7 +74,7 @@ public class Graph : MonoBehaviour
         return smallest;
     }
 
-    public void getTriangles(bool amin){
+    public void getTriangles(){
         int i = 0;
 
         foreach(GameObject cube in GameObject.FindGameObjectsWithTag("cuadrados") ){
@@ -95,28 +95,6 @@ public class Graph : MonoBehaviour
            
             Node node2 = new Node(i++,vertices2);
             nodes.Add(node2.id,node2);
-        }
-
-        if(amin){
-            foreach(GameObject cube in GameObject.FindGameObjectsWithTag("amin") ){
-                Vector3 pos = cube.transform.position;
-                Vector3 scale = cube.transform.localScale;
-                Vector3[] vertices = new Vector3[3];
-                vertices[0] = new Vector3(pos.x - scale.x/2, pos.y + scale.y/2, 0);
-                vertices[1] = new Vector3(pos.x - scale.x/2, pos.y - scale.y/2, 0);
-                vertices[2] = new Vector3(pos.x + scale.x/2, pos.y - scale.y/2, 0);
-
-                Node node = new Node(i++, vertices);
-                nodes.Add(node.id,node);       
-
-                Vector3[] vertices2 = new Vector3[3];
-                vertices2[0] = new Vector3(pos.x - scale.x/2, pos.y + scale.y/2, 0);
-                vertices2[1] = new Vector3(pos.x + scale.x/2, pos.y + scale.y/2, 0);
-                vertices2[2] = new Vector3(pos.x + scale.x/2, pos.y - scale.y/2, 0);
-           
-                Node node2 = new Node(i++,vertices2);
-                nodes.Add(node2.id,node2);
-            }
         }
     }
 

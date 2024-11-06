@@ -70,10 +70,6 @@ public class Align : MonoBehaviour
             rotation = -Mathf.DeltaAngle(orientation, transform.eulerAngles.z) ;
         }  
 
-        // Debug.Log("target.eulerAngles.z: " + target.eulerAngles.z);
-        // Debug.Log(" transform.eulerAngles.z: " + transform.eulerAngles.z);
-        // Debug.Log("rotation: " + rotation);
-
         // Map the result to the (-pi, pi) interval.
         // rotation = MathUtilities.mapToRange(rotation);
         float rotationSize = Mathf.Abs(rotation);
@@ -113,7 +109,6 @@ public class Align : MonoBehaviour
             result.angular /= angularAcceleration;
             result.angular *= maxAngularAcceleration;
         }
-        // Debug.Log("result.angular: " + result.angular);
 
         result.linear = Vector2.zero;
         return result;

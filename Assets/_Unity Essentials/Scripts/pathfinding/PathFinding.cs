@@ -17,14 +17,7 @@ public class PathFinding : MonoBehaviour
     void Start()
     {
         graph = new Graph();
-        if (character.name == "amin")
-        {
-            graph.getTriangles(true);
-        }
-        else
-        {
-            graph.getTriangles(false);
-        }
+        graph.getTriangles();
         graph.createConnections();
     }
 
