@@ -24,9 +24,9 @@ public class Node
     }
     
     public void DrawTriangle(){
-        Debug.DrawLine(vertices[0],vertices[1],Color.green);
-        Debug.DrawLine(vertices[1],vertices[2],Color.green);
-        Debug.DrawLine(vertices[2],vertices[0],Color.green);
+        Debug.DrawLine(vertices[0],vertices[1],Color.white);
+        Debug.DrawLine(vertices[1],vertices[2],Color.white);
+        Debug.DrawLine(vertices[2],vertices[0],Color.white);
 
     }
 }

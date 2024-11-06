@@ -51,7 +51,7 @@ public class PathFinding : MonoBehaviour
         // draw path
         for (int i = 0; i < path.Count - 1; i++)
         {
-            Debug.DrawLine(path[i].center, path[i + 1].center, Color.red);
+            Debug.DrawLine(path[i].center, path[i + 1].center, Color.green);
         }
 
         // following path
@@ -91,7 +91,7 @@ public class PathFinding : MonoBehaviour
             // Si estamos en el último nodo, no intentamos acceder al siguiente
             if (i < path.Count - 1)
             {
-                Debug.DrawLine(path[i].center, path[i + 1].center, Color.red);
+                Debug.DrawLine(path[i].center, path[i + 1].center, Color.green);
             }
 
             if (i < path.Count - 1 && graph.PointInTriangle(character.transform.position, path[i].vertices))
