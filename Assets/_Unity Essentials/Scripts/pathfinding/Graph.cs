@@ -28,12 +28,6 @@ public class Graph : MonoBehaviour
         return result;
     }
 
-    public float heuristic(Node start, Node end){
-        Vector3 X = start.center;
-        Vector3 Y = end.center;
-        return Mathf.Sqrt((Y.x - X.x) * (Y.x - X.x) + (Y.y - X.y) * (Y.y - X.y));
-    }
-
     public bool nodesAside(Node node1, Node node2){
 
         for(int i=0; i< node1.vertices.Length ; i++){
@@ -98,6 +92,11 @@ public class Graph : MonoBehaviour
         }
     }
 
+    public float heuristic(Node start, Node end){
+        Vector3 X = start.center;
+        Vector3 Y = end.center;
+        return Mathf.Sqrt((Y.x - X.x) * (Y.x - X.x) + (Y.y - X.y) * (Y.y - X.y));
+    }
     public List<Node> AStar(Node start, Node end){
 
         List<Node> path = new List<Node>();
@@ -178,8 +177,6 @@ public class Graph : MonoBehaviour
         }
 
         return path;
-        
-
     }
 
     public List<Connection> getNodeConnections(Node node){

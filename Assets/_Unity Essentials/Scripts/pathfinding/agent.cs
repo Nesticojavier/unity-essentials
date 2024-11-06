@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class agent : MonoBehaviour
 {
@@ -11,10 +9,11 @@ public class agent : MonoBehaviour
 
     public Steering steering;
 
-    public float maxSpeed = 0.1f;
+    public float maxSpeed = 2f;
 
-    public float maxAcceleration = 0.1f;
-    
+    public float maxAcceleration = 2f;
+    public float maxAngularVelocity = 100f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,42 +24,28 @@ public class agent : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {   
-        maxAcceleration =  maxSpeed * 100;
+    {
+        maxAcceleration = maxSpeed * 100;
         // Update position and orientation
         transform.position += velocity * Time.deltaTime;
-        transform.rotation = Quaternion.Euler(0,0,transform.rotation.eulerAngles.z + rotation * Time.deltaTime * Mathf.Rad2Deg);
+        transform.rotation = Quaternion.Euler(0, 0, transform.rotation.eulerAngles.z + rotation * Time.deltaTime * Mathf.Rad2Deg);
 
         // Update velocity and rotation
         velocity += steering.linear * Time.deltaTime;
         rotation += steering.angular * Time.deltaTime;
 
-        if (velocity.magnitude > maxSpeed){
+        if (velocity.magnitude > maxSpeed)
+        {
             velocity.Normalize();
             velocity *= maxSpeed;
-        }        
-        
+        }
 
-    }
+        if (velocity.magnitude > 0)
+        {
+            float angle = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
 
-    public Quaternion newOrientation(Quaternion current, Vector3 velocity){
-        // Make sure we have a velocity.
-        if (velocity.magnitude > 0){
-            // Calculate orientation from the velocity.
-            return Quaternion.Euler(current.x,current.y,Mathf.Atan2(-velocity.x, velocity.y)*Mathf.Rad2Deg);
-        } else {
-            return current;
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, maxAngularVelocity * Time.deltaTime);
         }
     }
-
-    public Vector3 asVector(float orientation){
-        Vector3 result = Vector3.zero;
-        result.x = - Mathf.Sin(orientation);
-        result.y = Mathf.Cos(orientation);
-        result.Normalize();
-        return result;
-
-    }
-
-
 }
