@@ -93,7 +93,7 @@ public class MouseStateMachine : MonoBehaviour
 
 
         // ir al estado, comoer queso
-        if (Vector3.Distance(transform.position, cheeses[SeekCheeseIndex].position) < 0.6f)
+        if (Vector3.Distance(transform.position, cheeses[SeekCheeseIndex].position) < 1f)
         {
             currentState = State.EatCheese;
             pathFinding.enabled = false; 

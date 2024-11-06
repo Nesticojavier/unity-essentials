@@ -110,7 +110,7 @@ public class StateMachinePatrol1 : MonoBehaviour
             pathFinding.target = patrolPoints[patrolIndex].gameObject; // Actualiza el objetivo en PathFinding
             pathFinding.enabled = true;
 
-            if (Vector3.Distance(transform.position, patrolPoints[patrolIndex].position) < 0.6f)
+            if (Vector3.Distance(transform.position, patrolPoints[patrolIndex].position) < 2f)
             {
                 patrolIndex = (patrolIndex + 1) % patrolPoints.Length; // Cambia al siguiente punto
             }
