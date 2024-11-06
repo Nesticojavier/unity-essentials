@@ -18,7 +18,6 @@ public class MouseStateMachine : MonoBehaviour
     public Transform home;
     public State currentState = State.Hidden;
     public PathFinding pathFinding;
-    private int SeekCheeseIndex = 0;
 
     void Start()
     {
@@ -77,10 +76,11 @@ public class MouseStateMachine : MonoBehaviour
 
     void SeekCheese()
     {
+        int SeekCheeseIndex = Random.Range(0, 2);
+        
         if (cheeses.Length > 0)
         {
             // actualiza el target
-            // TODO: logica para seleccionar target
             pathFinding.target = cheeses[SeekCheeseIndex].gameObject;
         }
 
