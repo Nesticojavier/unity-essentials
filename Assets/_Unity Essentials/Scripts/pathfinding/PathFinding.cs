@@ -44,10 +44,10 @@ public class PathFinding : MonoBehaviour
             node.DrawTriangle();
         }
 
-        foreach (Connection cone in graph.connections)
-        {
-            cone.DrawConnection();
-        }
+        // foreach (Connection cone in graph.connections)
+        // {
+        //     cone.DrawConnection();
+        // }
 
 
         // found path
