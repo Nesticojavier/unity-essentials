@@ -19,10 +19,10 @@ public class StateMachinePatrol1 : MonoBehaviour
     private int patrolIndex = 0;
 
     // Variables para la energía de la patrulla
-    public float maxEnergy = 20.0f; // Energía máxima del guardia
-    private float currentEnergy;    // Energía actual del guardia
+    public float maxEnergy = 50.0f; // Energía máxima del guardia
+    public float currentEnergy;    // Energía actual del guardia
     public float energyDrainRate = 1.0f; // Cuánto se drena la energía por segundo
-    public float energyRechargeRate = 2.0f; // Velocidad de recarga de energía en Idle
+    public float energyRechargeRate = 0.5f; // Velocidad de recarga de energía en Idle
 
 
     void Start()
@@ -56,7 +56,7 @@ public class StateMachinePatrol1 : MonoBehaviour
 
     void Idle()
     {
-    
+
         // Recargar energía en el estado de descanso
         currentEnergy += energyRechargeRate * Time.deltaTime;
         currentEnergy = Mathf.Min(currentEnergy, maxEnergy); // No exceder energía máxima
@@ -72,13 +72,13 @@ public class StateMachinePatrol1 : MonoBehaviour
         {
             currentState = State.Seek;
         }
-        else if (Input.GetKeyDown(KeyCode.P)) // Cambia a Patrol al presionar "P"
-        {
-            currentState = State.Patrol;
-        }
+        // else if (Input.GetKeyDown(KeyCode.P))
+        // {
+        //     currentState = State.Patrol;
+        // }
 
-        // empieza a patrullar cuando el otro esté descansando
-        else if (otherStateMachine.currentState.ToString() == State.Idle.ToString())
+        // patrullar cuando el otro esté descansando y yo tenga la bateria al maximo
+        if (otherStateMachine.currentState.ToString() == State.Idle.ToString() && currentEnergy >= maxEnergy)
         {
             currentState = State.Patrol;
         }
