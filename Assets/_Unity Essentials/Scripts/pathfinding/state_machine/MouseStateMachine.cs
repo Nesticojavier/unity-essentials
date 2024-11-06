@@ -19,10 +19,15 @@ public class MouseStateMachine : MonoBehaviour
     public State currentState = State.Hidden;
     public PathFinding pathFinding;
 
+    private System.Random randomGenerator;
+    private int SeekCheeseIndex;
+
     void Start()
     {
         pathFinding.enabled = false;
+        randomGenerator = new System.Random();
     }
+
 
     void Update()
     {
@@ -52,6 +57,7 @@ public class MouseStateMachine : MonoBehaviour
             pathFinding.character.steering.linear = Vector3.zero;
         }
 
+        pathFinding.target = null;
 
         // salir si todos los patrulleros están quietos
         if (patrol_cars[0].currentState.ToString() == "Idle" && patrol_cars[1].currentState.ToString() == "Idle")
@@ -76,25 +82,21 @@ public class MouseStateMachine : MonoBehaviour
 
     void SeekCheese()
     {
-        int SeekCheeseIndex = Random.Range(0, 2);
-        
-        if (cheeses.Length > 0)
-        {
-            // actualiza el target
-            pathFinding.target = cheeses[SeekCheeseIndex].gameObject;
-        }
-
-        // habilita pathfinding
+    // Si aún no se ha asignado un objetivo de queso, lo hacemos aquí
+    if (pathFinding.target == null && cheeses.Length > 0)
+    {
+        SeekCheeseIndex = randomGenerator.Next(0, cheeses.Length);  
+        pathFinding.target = cheeses[SeekCheeseIndex].gameObject; 
         pathFinding.enabled = true;
+    }
 
 
 
         // ir al estado, comoer queso
         if (Vector3.Distance(transform.position, cheeses[SeekCheeseIndex].position) < 0.6f)
         {
-            // SeekCheeseIndex = (SeekCheeseIndex + 1) % cheeses.Length;
             currentState = State.EatCheese;
-            pathFinding.enabled = false; // Desactiva el PathFinding
+            pathFinding.enabled = false; 
         }
 
         // si alguno no está quieto, ir ocultarme (alarma)
