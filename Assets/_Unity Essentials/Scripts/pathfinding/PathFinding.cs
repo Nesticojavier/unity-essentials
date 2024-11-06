@@ -10,7 +10,8 @@ public class PathFinding : MonoBehaviour
     Node start;
     Node end;
     public GameObject target;
-    private float targetRadius = 0.5f, slowRadius = 3f, timeToTarget = 1.0f;
+    private float slowRadius = 3f;
+    private float timeToTarget = 1.0f;
     public agent character;
 
     // Start is called before the first frame update
@@ -24,6 +25,8 @@ public class PathFinding : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        // draw polygon
         foreach (Node node in graph.nodes.Values)
         {
             if (graph.PointInTriangle(target.transform.position, node.vertices))
@@ -37,6 +40,7 @@ public class PathFinding : MonoBehaviour
             node.DrawTriangle();
         }
 
+        // draw graph
         // foreach (Connection cone in graph.connections)
         // {
         //     cone.DrawConnection();
@@ -52,6 +56,7 @@ public class PathFinding : MonoBehaviour
             Debug.DrawLine(path[i].center, path[i + 1].center, Color.red);
         }
 
+        // following path
         for (int i = 0; i < path.Count; i++)
         {
             if (graph.PointInTriangle(character.transform.position, path[path.Count - 1].vertices))
@@ -60,7 +65,6 @@ public class PathFinding : MonoBehaviour
                 Vector3 direction = target.transform.position - character.transform.position;
                 float distance = direction.magnitude;
 
-                // if (distance > targetRadius){
                 float targetSpeed;
                 if (distance > slowRadius)
                 {
@@ -83,12 +87,9 @@ public class PathFinding : MonoBehaviour
                     character.steering.linear.Normalize();
                     character.steering.linear *= character.maxAcceleration;
                 }
-                // } else {
-                //     character.steering.linear = Vector3.zero;
-                //     character.velocity =Vector3.zero;
-                // }
 
             }
+
             // Si estamos en el último nodo, no intentamos acceder al siguiente
             if (i < path.Count - 1)
             {
