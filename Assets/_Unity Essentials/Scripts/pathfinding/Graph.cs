@@ -4,22 +4,28 @@ using UnityEngine;
 using System.Linq;
 
 public class Graph : MonoBehaviour
-{   
-    public Dictionary<int,Node> nodes = new Dictionary<int,Node>();
+{
+    public Dictionary<int, Node> nodes = new Dictionary<int, Node>();
 
     public List<Connection> connections = new List<Connection>();
 
-    public Graph(){
+    public Graph()
+    {
 
     }
 
-    public List<Connection> createConnections(){
+    public List<Connection> createConnections()
+    {
         List<Connection> result = new List<Connection>();
-        for(int i=0; i<nodes.Count;i++){
-            for(int j=i;j<nodes.Count;j++){
-                if (nodes.ContainsKey(i) && nodes.ContainsKey(j)){
-                    if(nodesAside(nodes[i],nodes[j])){
-                        addConection(nodes[i],nodes[j]);
+        for (int i = 0; i < nodes.Count; i++)
+        {
+            for (int j = i; j < nodes.Count; j++)
+            {
+                if (nodes.ContainsKey(i) && nodes.ContainsKey(j))
+                {
+                    if (nodesAside(nodes[i], nodes[j]))
+                    {
+                        addConection(nodes[i], nodes[j]);
                     }
                 }
             }
@@ -28,162 +34,217 @@ public class Graph : MonoBehaviour
         return result;
     }
 
-    public bool nodesAside(Node node1, Node node2){
+    public bool nodesAside(Node node1, Node node2)
+    {
 
-        for(int i=0; i< node1.vertices.Length ; i++){
-            for(int j=0; j < node2.vertices.Length;j++){
-				float x1=(node1.vertices[i%node1.vertices.Length].x + node1.vertices[(i+1)%node1.vertices.Length].x)/2;
-				float y1=(node1.vertices[i%node1.vertices.Length].y + node1.vertices[(i+1)%node1.vertices.Length].y)/2;
+        for (int i = 0; i < node1.vertices.Length; i++)
+        {
+            for (int j = 0; j < node2.vertices.Length; j++)
+            {
+                float x1 = (node1.vertices[i % node1.vertices.Length].x + node1.vertices[(i + 1) % node1.vertices.Length].x) / 2;
+                float y1 = (node1.vertices[i % node1.vertices.Length].y + node1.vertices[(i + 1) % node1.vertices.Length].y) / 2;
 
-				float x2=(node2.vertices[j%node2.vertices.Length].x + node2.vertices[(j+1)%node2.vertices.Length].x)/2;
-				float y2=(node2.vertices[j%node2.vertices.Length].y + node2.vertices[(j+1)%node2.vertices.Length].y)/2;
-							
-				if(Mathf.Abs(x1-x2)<1f & Mathf.Abs(y1-y2)<1f){
-					return true;
-				}
+                float x2 = (node2.vertices[j % node2.vertices.Length].x + node2.vertices[(j + 1) % node2.vertices.Length].x) / 2;
+                float y2 = (node2.vertices[j % node2.vertices.Length].y + node2.vertices[(j + 1) % node2.vertices.Length].y) / 2;
+
+                if (Mathf.Abs(x1 - x2) < 1f & Mathf.Abs(y1 - y2) < 1f)
+                {
+                    return true;
+                }
             }
         }
-        
+
         return false;
     }
 
-    public void addConection(Node fromNode, Node toNode){
+    public void addConection(Node fromNode, Node toNode)
+    {
 
-        foreach (Connection connection in connections){
-            if((connection.fromNode.id == fromNode.id && connection.toNode.id == toNode.id) || (connection.toNode.id == fromNode.id && connection.fromNode.id == toNode.id)){
+        foreach (Connection connection in connections)
+        {
+            if ((connection.fromNode.id == fromNode.id && connection.toNode.id == toNode.id) || (connection.toNode.id == fromNode.id && connection.fromNode.id == toNode.id))
+            {
                 return;
             }
         }
-        connections.Add(new Connection(fromNode,toNode));
+        connections.Add(new Connection(fromNode, toNode));
     }
 
-    public NodeRecord smallestElement(Dictionary<Node,NodeRecord> open){
+    public NodeRecord smallestElement(Dictionary<Node, NodeRecord> open)
+    {
         NodeRecord smallest = open.First().Value;
 
-        foreach (KeyValuePair<Node,NodeRecord> node in open){
-            if(node.Value.estimatedTotalCost < smallest.estimatedTotalCost){
-                smallest=node.Value;
+        foreach (KeyValuePair<Node, NodeRecord> node in open)
+        {
+            if (node.Value.estimatedTotalCost < smallest.estimatedTotalCost)
+            {
+                smallest = node.Value;
             }
         }
         return smallest;
     }
 
-    public void getTriangles(){
+    public void getTriangles()
+    {
         int i = 0;
 
-        foreach(GameObject cube in GameObject.FindGameObjectsWithTag("cuadrados") ){
+        foreach (GameObject cube in GameObject.FindGameObjectsWithTag("cuadrados"))
+        {
             Vector3 pos = cube.transform.position;
             Vector3 scale = cube.transform.localScale;
             Vector3[] vertices = new Vector3[3];
-            vertices[0] = new Vector3(pos.x - scale.x/2, pos.y + scale.y/2, 0);
-            vertices[1] = new Vector3(pos.x - scale.x/2, pos.y - scale.y/2, 0);
-            vertices[2] = new Vector3(pos.x + scale.x/2, pos.y - scale.y/2, 0);
+            vertices[0] = new Vector3(pos.x - scale.x / 2, pos.y + scale.y / 2, 0);
+            vertices[1] = new Vector3(pos.x - scale.x / 2, pos.y - scale.y / 2, 0);
+            vertices[2] = new Vector3(pos.x + scale.x / 2, pos.y - scale.y / 2, 0);
 
             Node node = new Node(i++, vertices);
-            nodes.Add(node.id,node);       
+            nodes.Add(node.id, node);
 
             Vector3[] vertices2 = new Vector3[3];
-            vertices2[0] = new Vector3(pos.x - scale.x/2, pos.y + scale.y/2, 0);
-            vertices2[1] = new Vector3(pos.x + scale.x/2, pos.y + scale.y/2, 0);
-            vertices2[2] = new Vector3(pos.x + scale.x/2, pos.y - scale.y/2, 0);
-           
-            Node node2 = new Node(i++,vertices2);
-            nodes.Add(node2.id,node2);
+            vertices2[0] = new Vector3(pos.x - scale.x / 2, pos.y + scale.y / 2, 0);
+            vertices2[1] = new Vector3(pos.x + scale.x / 2, pos.y + scale.y / 2, 0);
+            vertices2[2] = new Vector3(pos.x + scale.x / 2, pos.y - scale.y / 2, 0);
+
+            Node node2 = new Node(i++, vertices2);
+            nodes.Add(node2.id, node2);
         }
     }
 
-    public float heuristic(Node start, Node end){
+    public float heuristic(Node start, Node end)
+    {
         Vector3 X = start.center;
         Vector3 Y = end.center;
         return Mathf.Sqrt((Y.x - X.x) * (Y.x - X.x) + (Y.y - X.y) * (Y.y - X.y));
     }
-    public List<Node> AStar(Node start, Node end){
+    public List<Node> AStar(Node start, Node end, Node obstacle)
+    {
 
         List<Node> path = new List<Node>();
-        NodeRecord startRecord = new NodeRecord(start,null,0,heuristic(start,end));
-        Dictionary<Node,NodeRecord> open = new Dictionary<Node,NodeRecord>();
-        Dictionary<Node,NodeRecord> close = new Dictionary<Node,NodeRecord>();
+        NodeRecord startRecord = new NodeRecord(start, null, 0, heuristic(start, end));
+        Dictionary<Node, NodeRecord> open = new Dictionary<Node, NodeRecord>();
+        Dictionary<Node, NodeRecord> close = new Dictionary<Node, NodeRecord>();
 
-        open.Add(start,startRecord);
+        open.Add(start, startRecord);
         NodeRecord current = new NodeRecord();
 
-        while(open.Count > 0){
+        while (open.Count > 0)
+        {
             current = smallestElement(open);
 
-            if (current.node.Equals(end)){
+            if (current.node.Equals(end))
+            {
                 break;
             }
 
             List<Connection> currentConnections = getNodeConnections(current.node);
 
-            foreach(Connection connection in currentConnections){
+            foreach (Connection connection in currentConnections)
+            {
                 Node endNode;
-                if(connection.fromNode.id == current.node.id){
+                if (connection.fromNode.id == current.node.id)
+                {
                     endNode = connection.toNode;
-                } else{
+                }
+                else
+                {
                     endNode = connection.fromNode;
                 }
 
-                float endNodecost = current.costSoFar + connection.cost;
+
+                // Penalización por pasar por el nodo obstáculo
+                // float obstaclePenalty = obstacle != null 
+                // ? (endNode.id == obstacle.id || connection.fromNode.id == obstacle.id) ? 10000000 : 0
+                // : 0;
+
+
+                float obstaclePenalty;
+                if (obstacle != null )
+                {
+                    
+                float influenceRadius = 3;
+                float distanceToObstacle = Vector3.Distance(endNode.calculateCenter(), obstacle.calculateCenter()); // Supone que Node tiene una posición
+                obstaclePenalty = distanceToObstacle <= influenceRadius
+                    ? (influenceRadius - distanceToObstacle) * 100 // Penalización inversamente proporcional a la distancia
+                    : 0;
+                } else {
+                    obstaclePenalty =0;
+                }
+
+                float endNodeCost = current.costSoFar + connection.cost + obstaclePenalty;
 
                 NodeRecord endNodeRecord;
                 float endNodeHeuristic;
 
-                if (close.ContainsKey(endNode)){
+                if (close.ContainsKey(endNode))
+                {
                     endNodeRecord = close[endNode];
-                    if (endNodeRecord.costSoFar <= endNodecost){
+                    if (endNodeRecord.costSoFar <= endNodeCost)
+                    {
                         continue;
                     }
                     close.Remove(endNode);
                     endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar;
-        
-                } else if (open.ContainsKey(endNode)){
+
+                }
+                else if (open.ContainsKey(endNode))
+                {
                     endNodeRecord = open[endNode];
-                    if (endNodeRecord.costSoFar<=endNodecost){
+                    if (endNodeRecord.costSoFar <= endNodeCost)
+                    {
                         continue;
                     }
                     endNodeHeuristic = endNodeRecord.estimatedTotalCost - endNodeRecord.costSoFar;
 
-                } else {
-                    endNodeRecord = new NodeRecord(endNode,null,0,0);
-                    endNodeHeuristic = heuristic(endNode,end);
+                }
+                else
+                {
+                    endNodeRecord = new NodeRecord(endNode, null, 0, 0);
+                    endNodeHeuristic = heuristic(endNode, end);
 
                 }
 
-                endNodeRecord.costSoFar = endNodecost;
+                endNodeRecord.costSoFar = endNodeCost;
                 endNodeRecord.prev = current;
                 endNodeRecord.connection = connection;
-                endNodeRecord.estimatedTotalCost = endNodecost + endNodeHeuristic;
+                endNodeRecord.estimatedTotalCost = endNodeCost + endNodeHeuristic;
 
-                if(!open.ContainsKey(endNode)){
-                    open.Add(endNode,endNodeRecord);
-                } 
+                if (!open.ContainsKey(endNode))
+                {
+                    open.Add(endNode, endNodeRecord);
+                }
             }
 
             open.Remove(current.node);
-            close.Add(current.node,current);
+            close.Add(current.node, current);
         }
 
-        if(current.node.id != end.id){
+        if (current.node.id != end.id)
+        {
             return null;
-         }else{
-            
+        }
+        else
+        {
+
             NodeRecord nodeRecord = current;
-            while(nodeRecord.node.id != start.id){
-                path.Insert(0,nodeRecord.node);
+            while (nodeRecord.node.id != start.id)
+            {
+                path.Insert(0, nodeRecord.node);
                 nodeRecord = nodeRecord.prev;
             }
-            path.Insert(0,nodeRecord.node);
+            path.Insert(0, nodeRecord.node);
         }
 
         return path;
     }
 
-    public List<Connection> getNodeConnections(Node node){
+    public List<Connection> getNodeConnections(Node node)
+    {
         List<Connection> nodeConnections = new List<Connection>();
 
-        foreach(Connection connection in connections){
-            if(node.id == connection.fromNode.id || node.id == connection.toNode.id){
+        foreach (Connection connection in connections)
+        {
+            if (node.id == connection.fromNode.id || node.id == connection.toNode.id)
+            {
                 nodeConnections.Add(connection);
             }
         }
@@ -191,19 +252,21 @@ public class Graph : MonoBehaviour
         return nodeConnections;
     }
 
-    public bool SameSide(Vector3 p1, Vector3 p2, Vector3 a, Vector3 b){
-        Vector3 cp1 = Vector3.Cross(b-a, p1-a);
-        Vector3 cp2 = Vector3.Cross(b-a, p2-a);
-        
+    public bool SameSide(Vector3 p1, Vector3 p2, Vector3 a, Vector3 b)
+    {
+        Vector3 cp1 = Vector3.Cross(b - a, p1 - a);
+        Vector3 cp2 = Vector3.Cross(b - a, p2 - a);
+
         return Vector3.Dot(cp1, cp2) >= 0;
     }
 
-    public bool PointInTriangle(Vector3 p, Vector3[] vertices){
+    public bool PointInTriangle(Vector3 p, Vector3[] vertices)
+    {
         Vector3 a, b, c;
         a = vertices[0];
         b = vertices[1];
         c = vertices[2];
-        return SameSide(p,a, b,c) && SameSide(p,b, a,c) && SameSide(p,c, a,b);
+        return SameSide(p, a, b, c) && SameSide(p, b, a, c) && SameSide(p, c, a, b);
     }
 
     // Start is called before the first frame update
@@ -215,6 +278,6 @@ public class Graph : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }

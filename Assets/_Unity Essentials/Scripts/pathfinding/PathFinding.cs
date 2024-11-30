@@ -5,9 +5,12 @@ public class PathFinding : MonoBehaviour
 {
     public Graph graph;
     List<Node> path = new List<Node>();
+    List<Node> path2 = new List<Node>();
     Node start;
     Node end;
+    Node middle;
     public GameObject target;
+    public GameObject obstacle = null;
     private float slowRadius = 3f;
     private float timeToTarget = 1.0f;
     public agent character;
@@ -35,6 +38,15 @@ public class PathFinding : MonoBehaviour
             {
                 start = node;
             }
+            // get obtacle point
+            if (obstacle != null)
+            {
+
+                if (graph.PointInTriangle(obstacle.transform.position, node.vertices))
+                {
+                    middle = node;
+                }
+            }
             node.DrawTriangle();
         }
 
@@ -46,17 +58,23 @@ public class PathFinding : MonoBehaviour
 
 
         // found path
-        path = graph.AStar(start, end);
+        path = graph.AStar(start, end, middle);
+        path2 = graph.AStar(start, end, null);
 
         // draw path
         for (int i = 0; i < path.Count - 1; i++)
         {
             Debug.DrawLine(path[i].center, path[i + 1].center, Color.green);
         }
+        // draw path2
+        for (int i = 0; i < path2.Count - 1; i++)
+        {
+            Debug.DrawLine(path2[i].center, path2[i + 1].center, Color.red);
+        }
 
         // following path
         for (int i = 0; i < path.Count; i++)
-        {   
+        {
 
             // estamos en el ultimo nodo
             if (graph.PointInTriangle(character.transform.position, path[path.Count - 1].vertices))
@@ -94,8 +112,9 @@ public class PathFinding : MonoBehaviour
             if (i < path.Count - 1)
             {
                 Debug.DrawLine(path[i].center, path[i + 1].center, Color.green);
+                // Debug.DrawLine(path2[i].center, path2[i + 1].center, Color.red);
             }
-            
+
             // estamos en un nodo del camino
             if (i < path.Count - 1 && graph.PointInTriangle(character.transform.position, path[i].vertices))
             {

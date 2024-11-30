@@ -19964,7 +19964,6 @@ GameObject:
   - component: {fileID: 752979336}
   - component: {fileID: 752979335}
   - component: {fileID: 752979333}
-  - component: {fileID: 752979337}
   - component: {fileID: 752979338}
   m_Layer: 0
   m_Name: car_patrol1
@@ -20047,7 +20046,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752979330}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1aac3576977b44884a60b2c4bd16e23f, type: 3}
   m_Name: 
@@ -20070,7 +20069,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752979330}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5f93bdd461604a14bb903f6a26cc691, type: 3}
   m_Name: 
@@ -20085,7 +20084,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 752979330}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a229f51b814ce4d8c9cef2ba7ceac245, type: 3}
   m_Name: 
@@ -20094,24 +20093,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 2
   maxAcceleration: 2
-  maxAngularVelocity: 200
---- !u!114 &752979337
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 752979330}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59bfd0860fa354e3fb28c496208e4409, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  maxAngularAcceleration: 5
-  maxRotation: 5
-  targetRadius: 2
-  slowRadius: 50
+  maxAngularVelocity: 100
 --- !u!50 &752979338
 Rigidbody2D:
   serializedVersion: 4
@@ -43188,7 +43170,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 2
   maxAcceleration: 2
-  maxAngularVelocity: 200
+  maxAngularVelocity: 100
 --- !u!114 &1643955715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47941,7 +47923,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804969214}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d5f93bdd461604a14bb903f6a26cc691, type: 3}
   m_Name: 
@@ -47956,7 +47938,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804969214}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a229f51b814ce4d8c9cef2ba7ceac245, type: 3}
   m_Name: 
@@ -47965,7 +47947,7 @@ MonoBehaviour:
   velocity: {x: 0, y: 0, z: 0}
   maxSpeed: 3
   maxAcceleration: 3
-  maxAngularVelocity: 200
+  maxAngularVelocity: 100
 --- !u!114 &1804969220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -47973,7 +47955,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1804969214}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 672de64de59e849db846341f1163721c, type: 3}
   m_Name: 
