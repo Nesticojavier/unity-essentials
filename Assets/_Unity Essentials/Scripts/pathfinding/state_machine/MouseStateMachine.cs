@@ -21,7 +21,7 @@ public class MouseStateMachine : MonoBehaviour
     public PathFinding pathFinding;
 
     private System.Random randomGenerator;
-    private int SeekCheeseIndex;
+    private int SeekCheeseIndex = 0;
 
     void Start()
     {
@@ -48,56 +48,56 @@ public class MouseStateMachine : MonoBehaviour
                 break;
         }
     }
-private float hiddenCooldown = 2f; // Tiempo mínimo antes de reevaluar
-private float hiddenTimer;        // Temporizador para Hidden
+    private float hiddenCooldown = 2f; // Tiempo mínimo antes de reevaluar
+    private float hiddenTimer;        // Temporizador para Hidden
 
-void Hidden()
-{
-    if (pathFinding.character != null)
+    void Hidden()
     {
-        pathFinding.character.velocity = Vector3.zero;
-        pathFinding.character.steering.linear = Vector3.zero;
-    }
-
-    pathFinding.target = null;
-
-    // Actualizar el temporizador
-    hiddenTimer += Time.deltaTime;
-
-    // Solo reevaluar si el temporizador supera el tiempo de cooldown
-    if (hiddenTimer < hiddenCooldown)
-        return;
-
-    // Verificar si todos los patrulleros están en Idle
-    bool allIdle = true;
-    foreach (var patrol in patrol_cars)
-    {
-        if (patrol.currentState.ToString() != "Idle")
+        if (pathFinding.character != null)
         {
-            allIdle = false;
-            break;
+            pathFinding.character.velocity = Vector3.zero;
+            pathFinding.character.steering.linear = Vector3.zero;
         }
-    }
 
-    if (allIdle)
-    {
-        currentState = State.SeekCheese;
-        hiddenTimer = 0f; // Reiniciar el temporizador
-    }
-    else
-    {
+        pathFinding.target = null;
+
+        // Actualizar el temporizador
+        hiddenTimer += Time.deltaTime;
+
+        // Solo reevaluar si el temporizador supera el tiempo de cooldown
+        if (hiddenTimer < hiddenCooldown)
+            return;
+
+        // Verificar si todos los patrulleros están en Idle
+        bool allIdle = true;
         foreach (var patrol in patrol_cars)
         {
-            // Si alguno pasa a Patrol, cambiar a TakeCover
-            if (patrol.currentState.ToString() == "Patrol")
+            if (patrol.currentState.ToString() != "Idle")
             {
-                currentState = State.TakeCover;
-                hiddenTimer = 0f; // Reiniciar el temporizador
-                return;
+                allIdle = false;
+                break;
+            }
+        }
+
+        if (allIdle)
+        {
+            currentState = State.SeekCheese;
+            hiddenTimer = 0f; // Reiniciar el temporizador
+        }
+        else
+        {
+            foreach (var patrol in patrol_cars)
+            {
+                // Si alguno pasa a Patrol, cambiar a TakeCover
+                if (patrol.currentState.ToString() == "Patrol")
+                {
+                    currentState = State.TakeCover;
+                    hiddenTimer = 0f; // Reiniciar el temporizador
+                    return;
+                }
             }
         }
     }
-}
 
     void TakeCover()
     {
@@ -159,21 +159,35 @@ void Hidden()
 
     void SeekCheese()
     {
-        // Si aún no se ha asignado un objetivo de queso, lo hacemos aquí
-        if (pathFinding.target == null && cheeses.Length > 0)
+        /*    // Si aún no se ha asignado un objetivo de queso, lo hacemos aquí
+           if (pathFinding.target == null && cheeses.Length > 0)
+           {
+               SeekCheeseIndex = randomGenerator.Next(0, cheeses.Length);
+               pathFinding.target = cheeses[SeekCheeseIndex].gameObject;
+               pathFinding.enabled = true;
+           }
+
+
+
+           // ir al estado, comoer queso
+           if (Vector3.Distance(transform.position, cheeses[SeekCheeseIndex].position) < 1f)
+           {
+               currentState = State.EatCheese;
+               pathFinding.enabled = false;
+           }
+
+           // si alguno no está quieto, ir ocultarme (alarma)
+           if (patrol_cars[0].currentState.ToString() != "Idle" || patrol_cars[1].currentState.ToString() != "Idle")
+           {
+               pathFinding.enabled = false;
+               currentState = State.TakeCover;
+           } */
+
+        pathFinding.target = cheeses[SeekCheeseIndex].gameObject;
+        pathFinding.enabled = true;
+        if (Vector3.Distance(transform.position, cheeses[SeekCheeseIndex].position) < 2f)
         {
-            SeekCheeseIndex = randomGenerator.Next(0, cheeses.Length);
-            pathFinding.target = cheeses[SeekCheeseIndex].gameObject;
-            pathFinding.enabled = true;
-        }
-
-
-
-        // ir al estado, comoer queso
-        if (Vector3.Distance(transform.position, cheeses[SeekCheeseIndex].position) < 1f)
-        {
-            currentState = State.EatCheese;
-            pathFinding.enabled = false;
+            SeekCheeseIndex = (SeekCheeseIndex + 1) % cheeses.Length;
         }
 
         // si alguno no está quieto, ir ocultarme (alarma)
@@ -182,13 +196,15 @@ void Hidden()
             pathFinding.enabled = false;
             currentState = State.TakeCover;
         }
-
     }
 
     void EatCheese()
     {
-        pathFinding.character.velocity = Vector3.zero;
-        pathFinding.character.steering.linear = Vector3.zero;
+        // pathFinding.character.velocity = Vector3.zero;
+        // pathFinding.character.steering.linear = Vector3.zero;
+
+
+
 
         // si alguno no está quieto, ir ocultarme (alarma)
         if (patrol_cars[0].currentState.ToString() != "Idle" || patrol_cars[1].currentState.ToString() != "Idle")
