@@ -14,7 +14,9 @@ public class MouseStateMachine : MonoBehaviour
     }
     // public Transform otherGuardTransform;
     public Transform[] cheeses;
+    public StateMachinePatrol1 patrol_cars0;
     public StateMachinePatrol1[] patrol_cars;
+    public StateMachinePatrol1 patrol_cars1;
     // public Transform home;
     public Transform[] coverPoints;
     public State currentState = State.Hidden;
