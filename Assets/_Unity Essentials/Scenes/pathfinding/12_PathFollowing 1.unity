@@ -976,7 +976,7 @@ GameObject:
   - component: {fileID: 32765191}
   m_Layer: 0
   m_Name: floor (100)
-  m_TagString: Untagged
+  m_TagString: cuadrados
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -45181,7 +45181,7 @@ GameObject:
   - component: {fileID: 1715036370}
   m_Layer: 0
   m_Name: floor (304)
-  m_TagString: Untagged
+  m_TagString: cuadrados
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49544,7 +49544,7 @@ GameObject:
   - component: {fileID: 1897205928}
   m_Layer: 0
   m_Name: floor (82)
-  m_TagString: Untagged
+  m_TagString: cuadrados
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -53996,7 +53996,7 @@ GameObject:
   - component: {fileID: 2043559907}
   m_Layer: 0
   m_Name: floor (303)
-  m_TagString: Untagged
+  m_TagString: cuadrados
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
